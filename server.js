@@ -3,7 +3,7 @@ const http = require('http');
 const { parse } = require('url');
 const fs = require('fs');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 const connectedUsersMap = {};
 
 const httpServer = http.createServer((req, res) => {

@@ -3,8 +3,15 @@
     <title>Chat</title>
 </head>
 <body>
-<ul id="messages"></ul>
-<input id="input" autocomplete="off"/>
+<div id="messages" style="margin-bottom: 20px"></div>
+<div>
+    <div style="margin-bottom: 5px">
+        <input id="name" placeholder="Name" style="width: 100%"/>
+    </div>
+    <div style="margin-bottom: 5px">
+        <textarea id="input" placeholder="Message" style="width: 100%"></textarea>
+    </div>
+</div>
 <button id="send" type="button">Send</button>
 <script src="/socket.io/socket.io.js"></script>
 <script src="client.js"></script>
