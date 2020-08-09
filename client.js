@@ -10,7 +10,9 @@ const appendMessage = ({ message }) => {
     const newMsg = messagesContainer.appendChild(newMessage);
 
     newMsg.innerText = message;
-}
+
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+};
 
 const send = () => {
     const text = input.value;
@@ -28,16 +30,26 @@ const send = () => {
     input.value = '';
 
     return false;
-}
+};
 
 const start = () => {
     nameInput.value = localStorage.getItem('name');
 
     socket.on('message', appendMessage);
-    socket.on('history', (history) => history.forEach(appendMessage));
+
+    socket.on('history', (history) => {
+        messagesContainer.innerHTML = '';
+        history.forEach(appendMessage);
+    });
 
     sendButton.addEventListener('click', send);
     nameInput.addEventListener('change', () => localStorage.setItem('name', nameInput.value));
-}
+
+    document.addEventListener('keypress', (e) => {
+        if (e.keyCode === 13) {
+            send();
+        }
+    });
+};
 
 start();

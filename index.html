@@ -1,18 +1,19 @@
 <html>
 <head>
     <title>Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div id="messages" style="margin-bottom: 20px"></div>
+<div id="messages" style="margin-bottom: 20px; overflow: scroll; height: 70vh"></div>
 <div>
     <div style="margin-bottom: 5px">
         <input id="name" placeholder="Name" style="width: 100%"/>
     </div>
     <div style="margin-bottom: 5px">
-        <textarea id="input" placeholder="Message" style="width: 100%"></textarea>
+        <textarea id="input" placeholder="Message" style="width: 100%; min-height: 100px"></textarea>
     </div>
 </div>
-<button id="send" type="button">Send</button>
+<button id="send" type="button" style="width: 100%; padding: 10px">Send</button>
 <script src="/socket.io/socket.io.js"></script>
 <script src="client.js"></script>
 </body>
