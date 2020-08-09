@@ -1,0 +1,22 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/humanamburu/chat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/humanamburu/chat/issues"
+  },
+  "homepage": "https://github.com/humanamburu/chat#readme",
+  "dependencies": {
+    "socket.io": "^2.3.0"
+  }
+}
