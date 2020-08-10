@@ -25,7 +25,7 @@ const notify = ({ message }) => {
         return new Notification(message);
     }
 
-    if (Notification.permission !== 'denied') {
+    if (Notification.permission === 'denied') {
         Notification.requestPermission().then(permission => {
             if (permission === 'granted') {
                 return new Notification(message);
