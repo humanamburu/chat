@@ -10,8 +10,6 @@ const appendMessage = ({ message }) => {
     const newMsg = messagesContainer.appendChild(newMessage);
 
     newMsg.innerText = message;
-
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
 };
 
 const send = () => {
@@ -32,14 +30,23 @@ const send = () => {
     return false;
 };
 
+const scrollToBottom = () => {
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
 const start = () => {
     nameInput.value = localStorage.getItem('name');
 
-    socket.on('message', appendMessage);
+    socket.on('message', (message) => {
+        appendMessage(message);
+        scrollToBottom();
+    });
 
     socket.on('history', (history) => {
         messagesContainer.innerHTML = '';
+
         history.forEach(appendMessage);
+        scrollToBottom();
     });
 
     sendButton.addEventListener('click', send);
