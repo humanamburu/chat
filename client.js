@@ -14,6 +14,24 @@ const appendMessage = ({ message }) => {
 
 const scrollToBottom = () => {
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
+};
+
+const notify = ({ message }) => {
+    if (!window.Notification) {
+        return;
+    }
+
+    if (Notification.permission === 'granted') {
+        return new Notification(message);
+    }
+
+    if (Notification.permission !== 'denied') {
+        Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+                return new Notification(message);
+            }
+        });
+    }
 }
 
 const send = () => {
@@ -40,6 +58,7 @@ const start = () => {
 
     socket.on('message', (message) => {
         appendMessage(message);
+        notify(message);
         scrollToBottom();
     });
 
