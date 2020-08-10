@@ -12,6 +12,10 @@ const appendMessage = ({ message }) => {
     newMsg.innerText = message;
 };
 
+const scrollToBottom = () => {
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
 const send = () => {
     const text = input.value;
     const name = nameInput.value;
@@ -23,16 +27,13 @@ const send = () => {
         socket.emit('message', messagePackage);
 
         appendMessage(messagePackage);
+        scrollToBottom();
     }
 
     input.value = '';
 
     return false;
 };
-
-const scrollToBottom = () => {
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-}
 
 const start = () => {
     nameInput.value = localStorage.getItem('name');
